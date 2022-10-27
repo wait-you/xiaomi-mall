@@ -20,27 +20,41 @@ import java.util.Date;
 @ToString
 public class Product extends BaseEntity {
 
+    /**
+     * 商品的唯一主键
+     */
     private int pId;
 
+    /**
+     * 类别的主键id
+     */
     private int tId;
 
+    /**
+     * 商品的名称
+     */
     private String name;
+
     /**
      * 商品的上架时间！ 数据库date --> java.util.Date
      */
     private Date time;
+
     /**
      * 商品的图片名称
      */
     private String image;
+
     /**
      * 商品的热门指数
      */
     private int state;
+
     /**
      * 商品的描述
      */
     private String info;
+
     /**
      * 价格
      */
