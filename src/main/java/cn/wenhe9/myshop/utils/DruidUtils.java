@@ -3,10 +3,14 @@ package cn.wenhe9.myshop.utils;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class DruidUtils {
@@ -28,7 +32,7 @@ public class DruidUtils {
 					try {
 						pro.load(DruidUtils.class.getClassLoader().getResourceAsStream("druid.properties"));
 
-						DataSource ds = DruidDataSourceFactory.createDataSource(pro);
+						ds = DruidDataSourceFactory.createDataSource(pro);
 					} catch (Exception e) {
 						throw new RuntimeException(e);
 					}

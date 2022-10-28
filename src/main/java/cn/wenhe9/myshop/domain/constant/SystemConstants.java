@@ -1,10 +1,11 @@
-package cn.wenhe9.myshop.utils;
-
+package cn.wenhe9.myshop.domain.constant;
 
 /**
- * 项目的常量类
+ * @description: 系统常量类
+ * @author: DuJinliang
+ * @create: 2022/10/28
  */
-public class Constants {
+public class SystemConstants {
     /**
      * 声明method标识
      */
@@ -33,10 +34,6 @@ public class Constants {
     public static final String USER_NOT_ACTIVE = "0";
 
     /**
-     * 角色
-     */
-
-    /**
      * 用户
      */
     public static final int ROLE_CUSTOMER = 0;
@@ -59,4 +56,20 @@ public class Constants {
     public static  final String AUTO_NAME="autoUser";
 
 
+    public static final String SYSTEM_PATH = "/myshop";
+
+    /**
+     * 404异常页面
+     */
+    public static final String NOT_FOUND_ERROR_PAGE = SYSTEM_PATH + "/error/404.html";
+
+    /**
+     * 服务器出错异常页面
+     */
+    public static final String SYSTEM_ERROR_PAGE = SYSTEM_PATH + "/error/500.jsp";
+
+    /**
+     * 默认错误页面
+     */
+    public static final String DEFAULT_ERROR_PAGE = SYSTEM_PATH + "/error/error.jsp";
 }

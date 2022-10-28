@@ -25,9 +25,9 @@ import java.util.Properties;
 public class EmailUtils {
 	public static void sendEmail(User user){
 		//发送方
-		String myAccount = "cqjava1701@163.com";
+		String myAccount = "dujinliang9@163.com";
 		//授权码
-		String myPass = "cq1701";
+		String myPass = "BFPOLKSRFTEXHXXS";
 		//发件人 邮箱的 SMTP 服务器地址
 		String SMTPHost = "smtp.163.com";
 		//组成 properties
@@ -78,7 +78,7 @@ public class EmailUtils {
 			//3.3生成邮件主题
 			message.setSubject("小米商城账号激活邮件","utf-8");
 			String ip = Inet4Address.getLocalHost().getHostAddress();
-			String url = "http://"+ip+":8080/activate?e="+ Base64Utils.encode(user.getEmail())+"&c="+Base64Utils.encode(user.getCode());
+			String url = "http://"+ip+":8083/myshop/user?method=active&e="+ Base64Utils.encode(user.getEmail())+"&c="+Base64Utils.encode(user.getCode());
 			//设置邮件正文 setContent 可以使用html标签
 			message.setContent(user.getUsername()+",你好<br>欢迎注册小米商城! 请点击链接进行激活:<a href='"+url+"'>"+url+"</a>","text/html;charset=utf-8");
 			//设置邮件的发送时间 是立即发送
