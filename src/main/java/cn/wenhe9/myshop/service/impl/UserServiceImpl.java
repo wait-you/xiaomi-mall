@@ -6,6 +6,8 @@ import cn.wenhe9.myshop.domain.constant.SystemConstants;
 import cn.wenhe9.myshop.domain.entity.User;
 import cn.wenhe9.myshop.service.UserService;
 import cn.wenhe9.myshop.utils.EmailUtils;
+import cn.wenhe9.myshop.utils.MD5Utils;
+import com.sun.mail.smtp.DigestMD5;
 
 import javax.jws.WebService;
 import java.sql.SQLException;
@@ -48,6 +50,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String username, String password) throws SQLException {
+        //1.需要将我们输入的验证码进行加密
+        String md5password = MD5Utils.md5(password);
+        //2.根据用户名查询用户
+        User user = userDao.selectUserByUname(username);
+
+        if(Objects.nonNull(user) && user.getPassword().equals(md5password)){
+            return user;
+        }
         return null;
     }
 
@@ -68,7 +78,7 @@ public class UserServiceImpl implements UserService {
         }
 
         //3.进行激活操作
-        int i = userDao.updateStatusByUid(user.getUId());
+        int i = userDao.updateStatusByUid(user.getUid());
 
         if (i>0){
             return SystemConstants.ACTIVE_SUCCESS;

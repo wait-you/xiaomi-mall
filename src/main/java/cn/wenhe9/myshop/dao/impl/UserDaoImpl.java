@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
         }
 
         User user = User.builder()
-                .uId(resultSet.getInt(DatabaseConsts.UserTable.COLUMN_U_ID))
+                .uid(resultSet.getInt(DatabaseConsts.UserTable.COLUMN_U_ID))
                 .username(resultSet.getString(DatabaseConsts.UserTable.COLUMN_U_NAME))
                 .password(resultSet.getString(DatabaseConsts.UserTable.COLUMN_U_PASSWORD))
                 .sex(resultSet.getString(DatabaseConsts.UserTable.COLUMN_U_SEX))
@@ -98,7 +98,7 @@ public class UserDaoImpl implements UserDao {
         }
 
         User user = User.builder()
-                .uId(resultSet.getInt(DatabaseConsts.UserTable.COLUMN_U_ID))
+                .uid(resultSet.getInt(DatabaseConsts.UserTable.COLUMN_U_ID))
                 .username(resultSet.getString(DatabaseConsts.UserTable.COLUMN_U_NAME))
                 .password(resultSet.getString(DatabaseConsts.UserTable.COLUMN_U_PASSWORD))
                 .sex(resultSet.getString(DatabaseConsts.UserTable.COLUMN_U_SEX))

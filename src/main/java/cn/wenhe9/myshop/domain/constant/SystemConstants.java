@@ -20,6 +20,11 @@ public class SystemConstants {
     public static final String INDEX="index";
 
     /**
+     * 验证码存放常量
+     */
+    public static final String CHECK_CODE = "CHECK_CODE";
+
+    /**
      * 定义用户模块涉及的常量
      */
     public static final String HAS_USER="1";

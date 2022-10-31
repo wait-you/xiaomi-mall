@@ -19,7 +19,7 @@ public class User extends BaseEntity {
     /**
      * 用户实体的主键属性
      */
-    private int uId;
+    private int uid;
 
     /**
      * 用户账号

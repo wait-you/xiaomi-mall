@@ -12,12 +12,15 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -139,46 +142,90 @@ public class UserController extends BaseServlet{
         request.getRequestDispatcher("/message.jsp").forward(request, response);
     }
 
-//    public String login(HttpServletRequest request,HttpServletResponse response) throws SQLException {
-//        //1.获取请求参数
-//        String username=request.getParameter("username");
-//        String password=request.getParameter("password");
-//        String code=request.getParameter("code");
-//
-//        //正确的验证码
-//        HttpSession session=request.getSession();
-//        String codestr=(String) session.getAttribute("code");
-//
-//        //2.判断验证码是否正确
-//        if(code ==null || !code.equalsIgnoreCase(codestr)){
-//            //给一个提示
-//            request.setAttribute("msg" ,"验证码错误");
-//            //将页面返回到我们的登录页面
-//            return Constants.FORWARD+"/login.jsp";
-//        }
-//        //3.调用业务逻辑判断账号和密码
-//        UserService userService=new UserServiceImpl();
-//        User user=userService.login(username,password);
-//
-//        //4.响应
-//        if (user ==null){
-//            //提示
-//            request.setAttribute("msg" ,"账号或者密码错误");
-//            //返回我们的登录页面
-//            return Constants.FORWARD+"/login.jsp";
-//        }
-//        session.setAttribute("loginUser",user);
-//
-//        return Constants.FORWARD+"/index.jsp";
-//    }
-//    public String logOut(HttpServletRequest request,HttpServletResponse response){
-//        //1.清空session中的用户数据
-//        HttpSession session=request.getSession();
-//        session.removeAttribute("loginUser");
-//
-//        //2.转发到登录页面
-//        request.setAttribute("msg","注销登录成功");
-//
-//        return Constants.FORWARD+"/login.jsp";
-//    }
+    public void login(HttpServletRequest request,HttpServletResponse response) throws SQLException, ServletException, IOException {
+        //1.获取请求参数
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        String auto=request.getParameter("auto");
+        String code=request.getParameter("code");
+
+        //正确的验证码
+        HttpSession session=request.getSession();
+        String codeStr= (String) session.getAttribute(SystemConstants.CHECK_CODE);
+
+        //2.判断验证码是否正确
+        if(code ==null || !code.equalsIgnoreCase(codeStr)){
+            //给一个提示
+            request.setAttribute("msg" ,"验证码错误");
+            //将页面返回到我们的登录页面
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
+        }
+        //3.调用业务逻辑判断账号和密码
+        User user = userService.login(username,password);
+
+        //4.判断用户是否存在
+        if (Objects.isNull(user)){
+            //提示
+            request.setAttribute("msg" ,"账号或者密码错误");
+            //返回我们的登录页面
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
+        }
+
+        //5.判断用户是否激活
+        if (SystemConstants.USER_NOT_ACTIVE.equals(user.getStatus())) {
+            //提示
+            request.setAttribute("msg" ,"该账号尚未激活，请先激活后登录");
+            //返回我们的登录页面
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
+        }
+
+        session.setAttribute("loginUser",user);
+
+        /**
+         * 自动登录
+         */
+        //1.判断是否勾选自动登录
+        if (Objects.isNull(auto)){
+            //没有勾选！
+            //将本地浏览器的cookie'清空'
+            //创建一个cookie
+            //定义一个常量autoUser,value里面没有值主要是一个覆盖功能
+            Cookie cookie = new Cookie(SystemConstants.AUTO_NAME,"");
+            //表示当前项目下所有的访问资源servlet都可以访问这个cookie
+            cookie.setPath("/");
+            cookie.setMaxAge(0);
+            //写回cookie
+            response.addCookie(cookie);
+
+        }else {
+            //自动登录数据存储 2周
+            //将cookie存入到本地
+            String content= username+":"+password;
+            //用Base64转一下码,就无法直接看出来了
+            content =Base64Utils.encode(content);
+            //传入我们的账号密码
+            Cookie cookie=new Cookie(SystemConstants.AUTO_NAME, content);
+            //表示当前项目下所有的访问资源servlet都可以访问这个cookie
+            cookie.setPath("/");
+            //两周
+            cookie.setMaxAge(14*24*60*60);
+            //写回cookie
+            response.addCookie(cookie);
+        }
+
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+    public void logOut(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        //1.清空session中的用户数据
+        HttpSession session=request.getSession();
+        session.removeAttribute("loginUser");
+
+        //2.转发到登录页面
+        request.setAttribute("msg","注销登录成功");
+
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
+    }
 }
