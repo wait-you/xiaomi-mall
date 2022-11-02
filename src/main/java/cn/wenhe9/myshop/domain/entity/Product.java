@@ -23,12 +23,12 @@ public class Product extends BaseEntity {
     /**
      * 商品的唯一主键
      */
-    private int pId;
+    private int pid;
 
     /**
      * 类别的主键id
      */
-    private int tId;
+    private int tid;
 
     /**
      * 商品的名称

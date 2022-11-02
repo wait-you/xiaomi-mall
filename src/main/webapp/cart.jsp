@@ -74,25 +74,25 @@
  				<c:forEach items="${list}" var="c" varStatus="i">
 	 				<tr>
 	 					<th>${i.count}</th>
-	 					<th>${c.product.pname}</th>
-	 					<th>${c.product.pprice}</th>
+	 					<th>${c.product.name}</th>
+	 					<th>${c.product.price}</th>
 	 					<th width="100px">
 		 					<div class="input-group">
 		 						<span class="input-group-btn">
-		 							<button class="btn btn-default" type="button" onclick="sub(${c.cid},${c.cnum},${c.product.pprice})">-</button>
+		 							<button class="btn btn-default" type="button" onclick="sub(${c.cid},${c.num},${c.product.price})">-</button>
 		 						</span>
-		 						<input type="text" class="form-control" id="num_count${i.count}" value="${c.cnum}" readonly="readonly" style="width:40px">
+		 						<input type="text" class="form-control" id="num_count${i.count}" value="${c.num}" readonly="readonly" style="width:40px">
 		 						<span class="input-group-btn">
-		 							<button class="btn btn-default" type="button" onclick="add(${c.cid},${c.cnum},${c.product.pprice})">+</button>
+		 							<button class="btn btn-default" type="button" onclick="add(${c.cid},${c.num},${c.product.price})">+</button>
 		 						</span>
 	 						</div>
 	 					</th>
-	 					<th>¥&nbsp;${c.ccount }</th>
+	 					<th>¥&nbsp;${c.count }</th>
 	 					<th>
 	 						<button type="button" class="btn btn-default" onclick="delCart(${c.cid})">删除</button>
 	 					</th>
 	 				</tr>
-	 				<c:set var="sum" value="${sum+c.ccount}"></c:set>
+	 				<c:set var="sum" value="${sum+c.count}"></c:set>
  				</c:forEach>
 			</table>
 		</div>

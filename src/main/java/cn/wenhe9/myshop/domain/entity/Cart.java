@@ -23,17 +23,17 @@ public class Cart extends BaseEntity {
     /**
      * 购物车的唯一标识
      */
-    private int cId;
+    private int cid;
 
     /**
      * 用户实体的主键属性
      */
-    private int uId;
+    private int uid;
 
     /**
      * 商品的唯一主键
      */
-    private int pId;
+    private int pid;
 
     /**
      * 产品

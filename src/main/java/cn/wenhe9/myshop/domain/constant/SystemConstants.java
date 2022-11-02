@@ -32,6 +32,16 @@ public class SystemConstants {
     public  static String NOT_HAS_USER = "0";
 
     /**
+     * 每页显示条数
+     */
+    public static final int PAGE_SIZE = 6;
+
+    /**
+     * 当前页
+     */
+    public static final int CURRENT_PAGE = 1;
+
+    /**
      * 用户的状态
      */
     public static final String USER_ACTIVE ="1";

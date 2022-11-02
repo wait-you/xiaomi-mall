@@ -22,25 +22,25 @@
 		<div class="row">
 		  <div class="col-xs-6 col-md-6">
 		    <a href="#" class="thumbnail">
-		      <img src="${pageContext.request.contextPath}/${product.pimage}"  width="560" height="560"  alt="${product.pname}" />
+		      <img src="${pageContext.request.contextPath}/${product.image}"  width="560" height="560"  alt="${product.name}" />
 		    </a>
 		  </div>
 		  <div class="col-xs-6 col-md-6">
 		   	<div class="panel panel-default" style="height: 560px">
 			  <div class="panel-heading">商品详情</div>
 			  <div class="panel-body">
-			    <h3>产品名称:<small>${product.pname}</small></h3>
+			    <h3>产品名称:<small>${product.name}</small></h3>
 			    <div style="margin-left: 10px;">
 				    
-				   <p>市场价格:&nbsp;&nbsp;&nbsp;<span class="text-danger" style="font-size: 15px;">${product.pprice}</span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-yen"></span></p>
-				    <p>上市时间:&nbsp;&nbsp;&nbsp;${product.ptime}</p>
+				   <p>市场价格:&nbsp;&nbsp;&nbsp;<span class="text-danger" style="font-size: 15px;">${product.price}</span>&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-yen"></span></p>
+				    <p>上市时间:&nbsp;&nbsp;&nbsp;${product.time}</p>
 				     <p>热销指数:&nbsp;&nbsp;&nbsp;
-						<c:forEach begin="1" end="${product.pstate}">
+						<c:forEach begin="1" end="${product.state}">
 				        		<img src="image/star_red.gif" alt="star"/>
 				        	</c:forEach>
 					</p>
 				    <p>详细介绍:</p>
-				    <p>&nbsp;&nbsp;${product.pinfo }</p>
+				    <p>&nbsp;&nbsp;${product.info }</p>
 				    <a href="${pageContext.request.contextPath}/cart?method=create&pid=${product.pid}" class="btn btn-warning">加入购物车&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-shopping-cart"></span></a>&nbsp;&nbsp;&nbsp;
 				    <button class="btn btn-danger">直接购买</button>
 			    </div>

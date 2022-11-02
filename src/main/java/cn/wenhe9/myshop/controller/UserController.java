@@ -1,5 +1,6 @@
 package cn.wenhe9.myshop.controller;
 
+import cn.wenhe9.myshop.dao.impl.UserDaoImpl;
 import cn.wenhe9.myshop.domain.constant.SystemConstants;
 import cn.wenhe9.myshop.domain.entity.User;
 import cn.wenhe9.myshop.service.UserService;
@@ -24,7 +25,7 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
- * @description: 用户控制器
+ * @description: 用户控制类
  * @author: DuJinliang
  * @create: 2022/10/28
  */
@@ -34,7 +35,7 @@ public class UserController extends BaseServlet{
     private UserService userService;
 
     public UserController() {
-        userService = new UserServiceImpl();
+        userService = new UserServiceImpl(new UserDaoImpl());
     }
 
     public void check(HttpServletRequest request , HttpServletResponse response) throws SQLException, IOException {
@@ -220,7 +221,7 @@ public class UserController extends BaseServlet{
     }
     public void logOut(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         //1.清空session中的用户数据
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         session.removeAttribute("loginUser");
 
         //2.转发到登录页面

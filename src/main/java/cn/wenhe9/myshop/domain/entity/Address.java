@@ -21,12 +21,12 @@ public class Address extends BaseEntity {
     /**
      * 地址实体的唯一主键列
      */
-    private int aId;
+    private int aid;
 
     /**
      * 用户实体的主键属性
      */
-    private int uId;
+    private int uid;
 
     /**
      * 地址的收件人

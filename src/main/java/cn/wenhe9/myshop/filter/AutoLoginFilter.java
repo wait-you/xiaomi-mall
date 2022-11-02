@@ -1,5 +1,6 @@
 package cn.wenhe9.myshop.filter;
 
+import cn.wenhe9.myshop.dao.impl.UserDaoImpl;
 import cn.wenhe9.myshop.domain.constant.SystemConstants;
 import cn.wenhe9.myshop.domain.entity.User;
 import cn.wenhe9.myshop.service.UserService;
@@ -28,7 +29,7 @@ public class AutoLoginFilter implements Filter {
     private UserService userService;
 
     public AutoLoginFilter() {
-        this.userService = new UserServiceImpl();
+        this.userService = new UserServiceImpl(new UserDaoImpl());
     }
 
     @Override

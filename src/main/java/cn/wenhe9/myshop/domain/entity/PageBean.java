@@ -1,6 +1,7 @@
 package cn.wenhe9.myshop.domain.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 

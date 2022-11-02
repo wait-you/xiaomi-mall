@@ -18,19 +18,19 @@
 	<div class="panel-body">
 	   	   <!--列表开始-->
 	    <div class="row" style="margin: 0 auto;">
-	    	<c:forEach items="${pageBean.list}" var="g" varStatus="i">
+			<c:forEach items="${pageBean.list}" var="g" varStatus="i">
 		    	<div class="col-sm-3">
 				    <div class="thumbnail">
-				      <img src="${pageContext.request.contextPath}/${g.pimage}" width="180" height="180"  alt="小米6" />
+				      <img src="http://localhost:8083/${pageContext.request.contextPath}/${g.image}" width="180" height="180"  alt="小米6" />
 				      <div class="caption">
-				        <h4>商品名称<a href="${pageContext.request.contextPath}/product?method=detail&pid=${g.pid}">${g.pname}</a></h4>
+				        <h4>商品名称<a href="${pageContext.request.contextPath}/product?method=detail&pid=${g.pid}">${g.name}</a></h4>
 				        <p>热销指数
-				        	<c:forEach begin="1" end="${g.pstate}">
+				        	<c:forEach begin="1" end="${g.state}">
 				        		<img src="image/star_red.gif" alt="star"/>
 				        	</c:forEach>
 				        </p>
-				         <p>上架日期:${g.ptime}</p>
-			             <p style="color:orange">价格:${g.pprice}</p>
+				         <p>上架日期:${g.time}</p>
+			             <p style="color:orange">价格:${g.price}</p>
 				      </div>
 				    </div>
 				  </div>
@@ -48,16 +48,16 @@
 
 				<c:forEach begin="1" end="${pageBean.totalPage}" step="1" var="index">
 					<c:if test="${pageBean.currentPage==index}">
-						<li class="active"><a href="product?method=show&tid=${param.tid}&currentPage=${index}">${index}</a></li>
+						<li class="active"><a href="product?method=show&tid=${param.tId}&currentPage=${index}">${index}</a></li>
 					</c:if>
 
 					<c:if test="${pageBean.currentPage!=index}">
-						<li ><a href="product?method=show&tid=${param.tid}&currentPage=${index}">${index}</a></li>
+						<li ><a href="product?method=show&tid=${param.tId}&currentPage=${index}">${index}</a></li>
 					</c:if>
 				</c:forEach>
 
 				<li class="${pageBean.currentPage==pageBean.totalPage?'disabled':''}">
-					<a href="product?method=show&tid=${param.tid}&currentPage=${pageBean.currentPage+1}" aria-label="Next">
+					<a href="product?method=show&tid=${param.tId}&currentPage=${pageBean.currentPage+1}" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span>
 					</a>
 				</li>

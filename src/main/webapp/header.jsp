@@ -16,7 +16,7 @@
                 dataType:"json",
                 success:function(data){
                     for(var i in data){
-                        var a = $("<a href='${pageContext.request.contextPath}/product?method=show&tid="+data[i].tid+"'>"+data[i].tname+"</a>");
+                        var a = $("<a href='${pageContext.request.contextPath}/product?method=show&tid="+data[i].tid+"'>"+data[i].name+"</a>");
                         $("#goodsType").append(a);
 
                     }
