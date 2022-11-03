@@ -30,4 +30,19 @@ public class AddressServiceImpl implements AddressService {
     public void saveAddress(Address address) throws SQLException {
         addressDao.insertAddress(address);
     }
+
+    @Override
+    public int removeAddress(String aId) throws SQLException {
+        return addressDao.removeAddress(aId);
+    }
+
+    @Override
+    public int updateAddress(Address address) throws SQLException {
+        return addressDao.updateAddress(address);
+    }
+
+    @Override
+    public int setDefault(String aId) throws SQLException {
+        return addressDao.setDefault(aId);
+    }
 }

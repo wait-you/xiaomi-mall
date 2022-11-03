@@ -37,19 +37,19 @@
  				<c:forEach items="${cartList}" var="c" varStatus="i">
 	 				<tr>
 	 					<th>${i.count}</th>
-	 					<th>${c.product.pname}</th>
-	 					<th>${c.product.pprice}</th>
-	 					<th>${c.cnum}</th>
-	 					<th>${c.ccount}</th>
+	 					<th>${c.product.name}</th>
+	 					<th>${c.product.price}</th>
+	 					<th>${c.num}</th>
+	 					<th>${c.count}</th>
 	 				</tr>
-	 				<c:set var="sum" value="${sum+c.ccount}"></c:set>
+	 				<c:set var="sum" value="${sum+c.count}"></c:set>
  				</c:forEach>
  				<tr>
  				 <td colspan="5">
  				 	<h5>收货地址</h5>
  				 	<select id="address" style="width:60%" class="form-control">
  				 		<c:forEach items="${addressList}" var="a" varStatus="ai">
- 				 			<option value="${a.aid}">${a.aname}&nbsp;&nbsp;${a.aphone}&nbsp;&nbsp;${a.adetail}</option>
+ 				 			<option value="${a.aid}">${a.name}&nbsp;&nbsp;${a.phone}&nbsp;&nbsp;${a.detail}</option>
  				 		</c:forEach>
  				 	</select>
  				 	<c:if test="${empty addressList}">

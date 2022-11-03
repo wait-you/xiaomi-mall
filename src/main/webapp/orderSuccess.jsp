@@ -24,11 +24,11 @@
 			<div class="panel-body">
 			    <h3 class="text-default"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp;&nbsp;&nbsp;订单添加成功!!</h3>
 				<hr>
-				<h4>订单号:${order.id }</h4>
-				<h4>订单总金额:${order.money }</h4>
+				<h4>订单号:${id }</h4>
+				<h4>订单总金额:${money }</h4>
 				<span class="h2">立即支付</span>
-				<a href="${pageContext.request.contextPath}/pay.jsp?oid=${order.id }&omoney=${order.money }" class="btn btn-warning">易宝支付</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="${pageContext.request.contextPath}/payWeixin.jsp?oid=${order.id }" class="btn btn-success">微信支付</a>
+				<a href="${pageContext.request.contextPath}/pay.jsp?oid=${id }&omoney=${money }" class="btn btn-warning">易宝支付</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="${pageContext.request.contextPath}/payWeixin.jsp?oid=${id }}&omoney=${money }" class="btn btn-success">微信支付</a>
 			</div>
 		</div>
 		

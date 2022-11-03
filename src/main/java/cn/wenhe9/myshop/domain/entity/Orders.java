@@ -25,17 +25,17 @@ public class Orders extends BaseEntity {
     /**
      * 订单编号是字符串类型但是也是唯一标识
      */
-    private String oId;
+    private String oid;
 
     /**
      * 用户实体的主键属性
      */
-    private int uId;
+    private int uid;
 
     /**
      * 地址实体的唯一主键列
      */
-    private int aId;
+    private int aid;
 
     /**
      * 订单的地址信息

@@ -56,9 +56,9 @@
 				<c:forEach var="address" items="${list}" varStatus="i" >
 					<tr>
 						<Td>${i.count}</Td>
-						<td>${address.aname}</td>
-						<td>${address.aphone}</td>
-						<td>${address.adetail}</td>
+						<td>${address.name}</td>
+						<td>${address.phone}</td>
+						<td>${address.detail}</td>
 						<td>
 							<button onclick="deleteAddr(${address.aid})" class="btn btn-danger btn-sm">删除</button>&nbsp;&nbsp;
 							<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal${address.aid}">修改</button>&nbsp;&nbsp;
@@ -79,20 +79,20 @@
 												<label class="col-sm-2 control-label">收件人</label>
 												<div class="col-sm-10">
 													<input type="hidden" name="aid" value="${address.aid}">
-													<input type="hidden" name="astate" value="${address.astate}">
-													<input type="text" name="aname" class="form-control" value="${address.aname}">
+													<input type="hidden" name="astate" value="${address.state}">
+													<input type="text" name="aname" class="form-control" value="${address.name}">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-2 control-label">电话</label>
 												<div class="col-sm-10">
-													<input type="text" name="aphone" class="form-control" value="${address.aphone}">
+													<input type="text" name="aphone" class="form-control" value="${address.phone}">
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-2 control-label">详细地址</label>
 												<div class="col-sm-10">
-													<input type="text" name="adetail" class="form-control" value="${address.adetail}">
+													<input type="text" name="adetail" class="form-control" value="${address.detail}">
 												</div>
 											</div>
 											
@@ -106,10 +106,10 @@
 							</div>
 							
 							<button onclick="defaultAddr(${address.aid})" class="btn btn-primary btn-sm">设为默认</button>
-							<c:if test="${address.astate==1}">
+							<c:if test="${address.state==1}">
 								<span class="badge" style="background-color:red;">默认</span>
 							</c:if>
-							<c:if test="${address.astate==0}">
+							<c:if test="${address.state==0}">
 								<span class="badge">普通</span>
 							</c:if>
 						</td>

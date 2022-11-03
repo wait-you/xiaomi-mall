@@ -21,4 +21,19 @@ public interface AddressService {
      * 保存新的地址
      */
     void saveAddress(Address address) throws SQLException;
+
+    /**
+     * 删除地址
+     */
+    int removeAddress(String aId) throws SQLException;
+
+    /**
+     * 更新地址
+     */
+    int updateAddress(Address address) throws SQLException;
+
+    /**
+     * 设置成默认地址
+     */
+    int setDefault(String aId) throws SQLException;
 }

@@ -53,7 +53,7 @@
                     <li>|</li>
                     <a href="order?method=show" id="a_top">我的订单</a>
                     <li>|</li>
-                    <a href="userservlet?method=getAddress" id="a_top">地址管理</a>
+                    <a href="address?method=show" id="a_top">地址管理</a>
                 </c:if>
                 <li>|</li>
                 <a href="" id="a_top">消息通知</a>

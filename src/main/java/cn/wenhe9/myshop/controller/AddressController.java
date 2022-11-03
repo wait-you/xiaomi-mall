@@ -62,11 +62,42 @@ public class AddressController extends BaseServlet {
         Map<String, String[]> map = request.getParameterMap();
 
         Address address = Address.builder().build();
-        BeanUtils.populate(address,map);
+        address.setUid(Integer.parseInt(map.get("uid")[0]));
+        address.setName(map.get("aname")[0]);
+        address.setPhone(map.get("aphone")[0]);
+        address.setDetail(map.get("adetail")[0]);
+        address.setState(0);
 
         //调用业务逻辑进行地址的添加(保存)
         addressService.saveAddress(address);
         //转发到展示方法
         request.getRequestDispatcher("/address?method=show").forward(request, response);
     }
+
+    public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String addrId = request.getParameter("aid");
+        addressService.removeAddress(addrId);
+        request.getRequestDispatcher("/address?method=show").forward(request, response);
+    }
+
+    public void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        //1.获取到我们输入的地址信息
+        Map<String, String[]> map = request.getParameterMap();
+
+        Address address = Address.builder().build();
+        address.setAid(Integer.parseInt(map.get("aid")[0]));
+        address.setName(map.get("aname")[0]);
+        address.setPhone(map.get("aphone")[0]);
+        address.setDetail(map.get("adetail")[0]);
+
+        addressService.updateAddress(address);
+        request.getRequestDispatcher("/address?method=show").forward(request, response);
+    }
+
+    public void setDefault(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String aid = request.getParameter("aid");
+        addressService.setDefault(aid);
+        request.getRequestDispatcher("/address?method=show").forward(request, response);
+    }
+
 }
